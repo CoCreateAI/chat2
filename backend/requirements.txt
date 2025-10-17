@@ -19,3 +19,4 @@ python-dotenv>=1.0.0
 
 # Utilities
 httpx>=0.25.0
+sqlalchemy>=2.0.0

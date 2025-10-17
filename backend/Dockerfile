@@ -1,11 +1,9 @@
-FROM python:3.11-slim
+FROM python:3.11-alpine
 
 WORKDIR /app
 
 # Instalar dependências do sistema
-RUN apt-get update && apt-get install -y \
-    gcc \
-    && rm -rf /var/lib/apt/lists/*
+RUN apk add --no-cache gcc musl-dev python3-dev libffi-dev
 
 # Copiar requirements
 COPY requirements.txt .
@@ -20,4 +18,4 @@ COPY . .
 EXPOSE 8000
 
 # Comando para iniciar a aplicação
-CMD ["uvicorn", "main:app", "--host", "0.0.0.0", "--port", "8000"]
+CMD ["uvicorn", "src.main:app", "--host", "0.0.0.0", "--port", "8000"]
